@@ -1,55 +1,18 @@
-# Simple tests to verify things work against a live REST service that returns JSON.. I picked github
+# Simple tests to verify things work against a FAKE 1Ticket REST service that returns JSON.
 ---
 - config:
-  - testset: "Simple github.com API Test"
-- test:
-  - name: "Test with successful validations"
-  - url: "/pdfs/digester/v1"
-  - group: "Successful"
-  - validators: # operator is applied as: <actual> <operator> <expected>
-     - compare: {jsonpath_mini: "total_count",     comparator: "eq",     expected: 1}
-     - compare: {jsonpath_mini: "total_count",     comparator: "ge",     expected: 1}
-     - compare: {jsonpath_mini: "total_count",     comparator: "gt",     expected: 0}
-     - compare: {jsonpath_mini: "total_count",     comparator: "eq",     expected: 1} # default operator of "eq"
-     - compare: {jsonpath_mini: "items",           comparator: "count_eq",  expected: 1}
-     - compare: {jsonpath_mini: "items.0.login",   comparator: "eq",     expected: "jewzaam"}
-     - compare: {jsonpath_mini: "items.0.id",      comparator: "gt",     expected: 0}
-     - extract_test: {jsonpath_mini: "does_not_exist",  test: "not_exists"}
-- test:
-  - name: "Test with validations that will fail"
-  - url: "/search/users?q=svanoort"
-  - group: "Failure"
-  - validators:
-     - compare: {jsonpath_mini: "total_count", comparator: "eq", expected: 0}
-
-
-#     ---
-#- config:
-#    - testset: "Checks Basic tests"
-#    - timeout: 100  # Increase timeout from the default 10 seconds
-#- test:
-#    - name: "Basic get with job_id"
-#    - url: "/pdfs/digester/v1"
-#- test:
-#    - name: "Get single person"
-#    - url: "/pdfs/digester/v1"
-#- test:
-#    - name: "Delete a single person, verify that works"
-#    - url: "/api/person/1/"
-#    - method: 'DELETE'
-#- test: # create entity by PUT
-#    - name: "Create/update person"
-#    - url: "/api/person/1/"
-#    - method: "PUT"
-#    - body: '{"first_name": "Gaius","id": 1,"last_name": "Baltar","login": "gbaltar"}'
-#    - headers: {'Content-Type': 'application/json'}
-#    - validators:  # This is how we do more complex testing!
-#        - compare: {header: content-type, comparator: contains, expected:'json'}
-#        - compare: {jsonpath_mini: 'login', expected: 'gbaltar'}  # JSON extraction
-#        - compare: {raw_body:"", comparator:contains, expected: 'Baltar' }  # Tests on raw response
-#- test: # create entity by POST
-#    - name: "Create person"
-#    - url: "/api/person/"
-#    - method: "POST"
-#    - body: '{"first_name": "William","last_name": "Adama","login": "theadmiral"}'
-#    - headers: {Content-Type: application/json}
+    - testset: "Demonstrate use of POST"
+- test: # create entity by POST
+    - name: "Obtain Job_id"
+    - timeout: 1
+    - url: "127.0.0.1:8089/pdfs/digester/v1"
+    - method: "POST"
+    - headers: {Content-Type: application/json}
+    - body: '{"url": "https://dl.dropboxusercontent.com/s/rgvi1w40qn5kbky/unm_Y_1_1-5.pdf"}'
+    - expected_status: [200]
+    - x-api-key:  YOUR_API_KEY
+    - validators: # operator is applied as: <actual> <operator> <expected>
+        - compare: {header: "content-type", comparator: contains, expected: 'application/json'}
+        - compare: {jsonpath_mini: "job_id",   comparator: "eq",     expected: "db3d0f36-c57f-45f6-9fc6-8cc1f782352d"}
+        - compare: {jmespath: 'job_id', comparator: 'eq', expected: 'db3d0f36-c57f-45f6-9fc6-8cc1f782352d' }
+        - compare: {raw_body: "",      comparator: "regex",     expected: '.*'}
