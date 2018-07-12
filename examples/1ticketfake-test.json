@@ -1,30 +1,34 @@
 [
  {"config":
-    {"testset": "Tests using test app"}
+    {"testset": "Tests using digester/v1"}
  },
  {"test": {
-    "name": "Basic get", "url": "/digester/v1"}
- },
- { "test":
-    {"name": "Get single person", "url": "/digester/v1"}
- },
- {"test": {
-    "name": "Get single person",
-    "url": "/digester/v1",
-    "method": "POST"
- }},
- {"test": {
-    "name": "Create/update person",
-    "url": "/digester/v1",
+    "name": "POST url to retrive Job_id",
+    "url": "127.0.0.1:8089/pdfs/digester/v1",
     "method": "POST",
-    "body": "{\"first_name\": \"Gaius\",\"id\": 1,\"last_name\": \"Baltar\",\"login\": \"gbaltar\"}",
-    "headers": {"Content-Type": "application/json"}
+    "body": "{\"url\": \"https://dl.dropboxusercontent.com/s/rgvi1w40qn5kbky/unm_Y_1_1-5.pdf\"}",
+    "headers": {"Content-Type": "application/json", "x-api-key": "YOUR_API_KEY"},
+    "expected_status": 200
   }},
  {"test": {
-    "name": "Create person",
-    "url": "/digester/v1",
+    "name": "GET with Job_id",
+    "url": "127.0.0.1:8089/pdfs/digester/v1/job_id",
+    "method": "GET",
+    "headers": {"Content-Type": "application/json", "x-api-key": "YOUR_API_KEY"},
+    "expected_status": 200
+ }},
+ {"test": {
+    "name": "POST decoder",
+    "url": "127.0.0.1:8089/pdfs/digester/v1/decoder/",
     "method": "POST",
-    "body": "{\"url\": \"Willim\",\"last_name\": \"Adama\",\"login\": \"theadmiral\"}",
-    "headers": {"Content-Type": "application/json"}
- }}
+    "headers": {"Content-Type": "application/json", "x-api-key": "YOUR_API_KEY"},
+    "expected_status": 202
+  }},
+  {"test": {
+    "name": "POST decoder Job_id",
+    "url": "127.0.0.1:8089/pdfs/digester/v1/decoder/job_id",
+    "method": "GET",
+    "headers": {"Content-Type": "application/json", "x-api-key": ""},
+    "expected_status": 200
+  }}
 ]
