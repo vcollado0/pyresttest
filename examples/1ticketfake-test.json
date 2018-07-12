@@ -1,0 +1,30 @@
+[
+ {"config":
+    {"testset": "Tests using test app"}
+ },
+ {"test": {
+    "name": "Basic get", "url": "/digester/v1"}
+ },
+ { "test":
+    {"name": "Get single person", "url": "/digester/v1"}
+ },
+ {"test": {
+    "name": "Get single person",
+    "url": "/digester/v1",
+    "method": "POST"
+ }},
+ {"test": {
+    "name": "Create/update person",
+    "url": "/digester/v1",
+    "method": "POST",
+    "body": "{\"first_name\": \"Gaius\",\"id\": 1,\"last_name\": \"Baltar\",\"login\": \"gbaltar\"}",
+    "headers": {"Content-Type": "application/json"}
+  }},
+ {"test": {
+    "name": "Create person",
+    "url": "/digester/v1",
+    "method": "POST",
+    "body": "{\"url\": \"Willim\",\"last_name\": \"Adama\",\"login\": \"theadmiral\"}",
+    "headers": {"Content-Type": "application/json"}
+ }}
+]
