@@ -1,0 +1,50 @@
+[{
+  "config":
+  {
+    "testset": "Tests using digester/v1"
+  }
+},
+  {
+    "test": {
+      "group": "digester/v1",
+      "name": "POST url to retrive Job_id",
+      "url": "127.0.0.1:8089/pdfs/digester/v1",
+      "method": "POST",
+      "body": "{\"url\": \"https://dl.dropboxusercontent.com/s/rgvi1w40qn5kbky/unm_Y_1_1-5.pdf\"}",
+      "headers": {"Content-Type": "application/json", "x-api-key": "YOUR_API_KEY"},
+      "expected_status": 200
+    }
+  },
+  {
+    "test": {
+      "group": "digester/v1",
+      "name": "GET with Job_id",
+      "url": "127.0.0.1:8089/pdfs/digester/v1/job_id",
+      "method": "GET",
+      "headers": {"Content-Type": "application/json", "x-api-key": "YOUR_API_KEY"},
+      "expected_status": 200
+    }
+  },
+  {
+    "test": {
+      "group": "digester/v1",
+      "name": "POST decoder",
+      "url": "127.0.0.1:8089/pdfs/digester/v1/decoder/",
+      "method": "POST",
+      "headers": {"Content-Type": "application/json", "x-api-key": "YOUR_API_KEY"},
+      "expected_status": 202
+    }
+  },
+  {
+    "test": {
+      "group": "digester/v1",
+      "name": "POST decoder Job_id",
+      "url": "127.0.0.1:8089/pdfs/digester/v1/decoder/job_id",
+      "method": "GET",
+      "headers": {
+        "Content-Type": "application/json", "x-api-key": ""
+      },
+      "expected_status": 200
+    }
+  }
+]

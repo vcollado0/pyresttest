@@ -1,0 +1,13 @@
+{
+  "$id": "127.0.0.1:8089/pdfs/digester/v1",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "jobs",
+  "type": "object",
+  "properties": {
+    "job_id": {
+      "type": "string",
+      "description": "The first test job"
+    }
+  },
+  "required": ["job_id"]
+}

@@ -1,0 +1,8 @@
+---
+- test:
+    - url: 127.0.0.1:8089/pdfs/digester/v1/
+    - method: "POST"
+    - headers: {Content-Type: application/json, x-api-key: YOUR_API_KEY}
+    - expected_status: 200
+    - validators:
+            - json_schema: {schema: {file: 'fake_1t_schema.json'}}
