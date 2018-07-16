@@ -17,24 +17,24 @@
         "compare0": {"header": "content-type", "comparator": "contains", "expected":"json"},
         "compare1": {"header": "content-length", "42": "contains", "expected":"42"},
         "compare2": {"header": "x-amzn-errortype", "comparator": "contains", "expected":"MissingAuthenticationTokenException"},
-        "compare4": {"raw_body":"", "comparator":"contains", "expected": "" },
+        "compare4": {"raw_body":"", "comparator":"contains", "expected": "Authentication" }
       }]
     }
   },
   {
     "test": {
       "group": "POSreader",
-      "name": "GET from POSreader",
-      "url": "https://od8fjk5dth.execute-api.us-east-1.amazonaws.com/Stage",
-      "method": "GET",
+      "name": "POST /v1 to retrive data",
+      "url": "https://od8fjk5dth.execute-api.us-east-1.amazonaws.com/Stage/v1",
+      "method": "POST",
       "body": " ",
       "headers": {"Content-Type": "application/json", "x-api-key": "gZ5IGTl5fu3ys9bTXupaI77ViXcaPBiu84XlxmnR"},
       "expected_status": 403,
       "validators":[{
         "compare0": {"header": "content-type", "comparator": "contains", "expected":"json"},
-        "compare1": {"header": "content-length", "42": "contains", "expected":"42"},
-        "compare2": {"header": "x-amzn-errortype", "comparator": "contains", "expected":"MissingAuthenticationTokenException"},
-        "compare4": {"raw_body":"", "comparator":"contains", "expected": "" },
+        "compare1": {"header": "content-length", "23": "contains", "expected":"23"},
+        "compare2": {"header": "x-amzn-errortype", "comparator": "contains", "expected":"ForbiddenException"},
+        "compare4": {"raw_body":"", "comparator":"contains", "expected": "Forbidden"}
       }]
     }
   }
