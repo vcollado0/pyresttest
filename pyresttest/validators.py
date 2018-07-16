@@ -602,7 +602,11 @@ register_extractor('raw_body', RawBodyExtractor.parse)
 # findall syntax
 
 register_validator('comparator', ComparatorValidator.parse)
-register_validator('compare', ComparatorValidator.parse)
+register_validator('compare0', ComparatorValidator.parse)
+register_validator('compare1', ComparatorValidator.parse)
+register_validator('compare2', ComparatorValidator.parse)
+register_validator('compare3', ComparatorValidator.parse)
+register_validator('compare4', ComparatorValidator.parse)
 register_validator('assertEqual', ComparatorValidator.parse)
 register_validator('extract_test', ExtractTestValidator.parse)
 register_validator('assertTrue', ExtractTestValidator.parse)
