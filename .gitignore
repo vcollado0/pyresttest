@@ -27,6 +27,9 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+#IDE's
+.idea
+
 # Unit test / coverage reports
 coverage
 htmlcov/
