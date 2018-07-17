@@ -1,0 +1,16 @@
+[{
+  "config":
+  {
+    "testset": "Tests using posreader"
+  }
+},
+  {
+    "test": {
+      "group": "POSupdater",
+      "name": "POST to retrive data",
+      "url": "https://httpbin.org/ip",
+      "method": "GET",
+      "expected_status": 200
+    }
+  }
+]
